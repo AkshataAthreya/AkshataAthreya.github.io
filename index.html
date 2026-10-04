@@ -7,406 +7,342 @@
 <meta name="description" content="Akshata Athreya — Data Science & Engineering student at RV University, Bengaluru.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── RESET & BASE ── */
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:14px}
-body{background:#FDF0F3;color:#1A1A1A;font-family:"DM Sans","Segoe UI",sans-serif;line-height:1.6;min-height:100vh}
+html{scroll-behavior:smooth}
+body{background:#FEF6F8;color:#1C1C1C;font-family:"DM Sans","Segoe UI",sans-serif;font-size:15px;line-height:1.65}
 a{color:inherit;text-decoration:none}
-a:focus-visible{outline:2px solid #9B7FE8;outline-offset:3px;border-radius:2px}
+a:focus-visible{outline:2px solid #B388E8;outline-offset:3px;border-radius:3px}
+img{max-width:100%}
 
-/* ── LAYOUT: sidebar + main ── */
-.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+/* ── TOP NAV (horizontal, not sidebar) ── */
+.topnav{position:sticky;top:0;z-index:100;background:#1C1C1C;display:flex;align-items:center;justify-content:space-between;padding:.9rem 3rem;border-bottom:2px solid #333}
+.topnav-name{font-family:"Syne",sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:.02em}
+.topnav-name span{color:#E8B4D0}
+.topnav nav{display:flex;gap:2rem}
+.topnav nav a{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#888;transition:color .15s}
+.topnav nav a:hover{color:#fff}
+.topnav-status{display:flex;align-items:center;gap:.5rem;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:#7CC97A}
+.dot{width:6px;height:6px;border-radius:50%;background:#7CC97A;flex-shrink:0}
 
-/* ── SIDEBAR ── */
-.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:#FDF0F3;border-right:1px solid #E8D0D5;display:flex;flex-direction:column;padding:1.75rem 1.5rem;z-index:100;overflow-y:auto}
-.sidebar-logo{font-family:"DM Mono",monospace;font-size:.72rem;font-weight:500;color:#9B7FE8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem}
-.sidebar-name{font-family:"Bebas Neue",sans-serif;font-size:1.55rem;letter-spacing:.04em;line-height:1;margin-bottom:2rem}
-.sidebar nav{display:flex;flex-direction:column;gap:.1rem;flex:1}
-.sidebar nav a{font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#888;padding:.4rem 0;border-left:2px solid transparent;padding-left:.6rem;transition:color .15s,border-color .15s}
-.sidebar nav a:hover,.sidebar nav a.active{color:#1A1A1A;border-color:#9B7FE8}
-.sidebar-spacer{margin-top:auto}
-.sidebar-status{display:flex;align-items:center;gap:.5rem;font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:1.25rem}
-.status-dot{width:7px;height:7px;border-radius:50%;background:#7CC97A;flex-shrink:0}
-.sidebar-links{display:flex;flex-direction:column;gap:.25rem}
-.sidebar-links a{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#888;transition:color .15s}
-.sidebar-links a:hover{color:#1A1A1A}
-.sidebar-links a::after{content:" /"}
-
-/* ── MAIN ── */
-.main{margin-left:220px;min-height:100vh}
-
-/* ── HERO ── */
-.hero{display:grid;grid-template-columns:1fr 260px;min-height:100vh;border-bottom:1px solid #D0C8C0}
-.hero-content{padding:3rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid #D0C8C0}
-.hero-spec{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#9B7FE8;margin-bottom:1.5rem}
-.hero h1{font-family:"Bebas Neue",sans-serif;font-size:clamp(4.5rem,11vw,9rem);line-height:.95;letter-spacing:.02em;margin-bottom:2rem}
-.hero h1 .accent{color:#9B7FE8}
-.hero-sub{font-size:1rem;color:#555;max-width:36ch;margin-bottom:2.5rem;letter-spacing:.01em}
-.btns{display:flex;flex-wrap:wrap;gap:.75rem}
-.btn{font-family:"DM Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.4rem;border:1.5px solid #1A1A1A;display:inline-block;transition:background .15s,color .15s}
-.btn:hover{background:#1A1A1A;color:#F5F0EB}
-.btn.filled{background:#1A1A1A;color:#F5F0EB}
-.btn.filled:hover{background:#9B7FE8;border-color:#9B7FE8}
-
-/* ── HERO RIGHT PANEL ── */
-.hero-panel{padding:3rem 2rem;display:flex;flex-direction:column;gap:2rem;background:#F7E0E8}
-.panel-block{}
-.panel-label{font-family:"DM Mono",monospace;font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:#9B7FE8;margin-bottom:.5rem}
-.panel-value{font-size:.9rem;font-weight:500;line-height:1.5}
-.panel-list{list-style:none;display:flex;flex-direction:column;gap:.25rem}
-.panel-list li{font-size:.88rem;padding-left:1rem;position:relative;color:#444}
-.panel-list li::before{content:">";position:absolute;left:0;color:#9B7FE8;font-family:"DM Mono",monospace}
-.panel-tag{display:inline-block;background:#9B7FE8;color:#fff;font-family:"DM Mono",monospace;font-size:.65rem;padding:.2rem .6rem;letter-spacing:.08em;margin-top:.25rem}
+/* ── HERO — full width, stacked, unique layout ── */
+.hero{min-height:92vh;display:grid;grid-template-rows:1fr auto;background:#FEF6F8;padding:5rem 3rem 3rem;position:relative;overflow:hidden;border-bottom:1.5px solid #E8D5DC}
+.hero-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:"Syne",sans-serif;font-weight:800;font-size:22vw;color:#F5E8EC;white-space:nowrap;pointer-events:none;user-select:none;z-index:0;letter-spacing:-.05em}
+.hero-inner{position:relative;z-index:1;max-width:900px}
+.hero-kicker{font-family:"DM Mono",monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:#B388E8;margin-bottom:1.25rem}
+.hero h1{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(3.5rem,8vw,7.5rem);line-height:1;letter-spacing:-.03em;margin-bottom:1.75rem}
+.hero h1 .line2{color:#B388E8;display:block}
+.hero h1 .line3{color:#E8B4D0;display:block}
+.hero-desc{font-size:1.1rem;color:#555;max-width:42ch;margin-bottom:2.5rem;line-height:1.7}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:3rem}
+.btn{font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.5rem;border:1.5px solid #1C1C1C;display:inline-block;transition:all .15s;cursor:pointer}
+.btn:hover{background:#1C1C1C;color:#FEF6F8}
+.btn.filled{background:#1C1C1C;color:#FEF6F8}
+.btn.filled:hover{background:#B388E8;border-color:#B388E8}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.htag{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.08em;padding:.3rem .8rem;border:1px solid #D0B8C8;color:#888;background:#fff}
+.hero-meta{position:relative;z-index:1;display:flex;gap:3rem;padding-top:2.5rem;border-top:1px solid #E8D5DC;flex-wrap:wrap}
+.meta-item{}
+.meta-label{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#B388E8;margin-bottom:.3rem}
+.meta-val{font-size:.88rem;font-weight:600}
 
 /* ── TICKER ── */
-.ticker{background:#1A1A1A;overflow:hidden;white-space:nowrap;border-bottom:1px solid #333;padding:.65rem 0}
-.ticker-inner{display:inline-block;animation:tick 35s linear infinite}
-.ticker-inner span{font-family:"DM Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#888;margin:0 1.5rem}
-.ticker-inner b{color:#9B7FE8}
+.ticker{background:#B388E8;overflow:hidden;white-space:nowrap;border-bottom:1.5px solid #1C1C1C}
+.ticker-inner{display:inline-block;padding:.65rem 0;animation:tick 35s linear infinite}
+.ticker-inner span{font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin:0 1.25rem;opacity:.85}
+.ticker-inner b{color:#FEF6F8;opacity:1;font-size:.9rem}
 @keyframes tick{to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.ticker-inner{animation:none}}
 
-/* ── SECTIONS ── */
-.section{padding:5rem 3.5rem;border-bottom:1px solid #E8D0D5}
-.section-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3rem}
-.section-num{font-family:"DM Mono",monospace;font-size:.68rem;color:#9B7FE8;letter-spacing:.1em}
-.section h2{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:.03em;line-height:1}
+/* ── SECTION BASE ── */
+.section{padding:5rem 3rem;border-bottom:1.5px solid #E8D5DC}
+.section-label{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#B388E8;margin-bottom:.6rem}
+.section h2{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(2rem,4.5vw,3.5rem);letter-spacing:-.02em;margin-bottom:2.5rem;line-height:1.05}
 
-/* ── SECTION COLOURS ── */
-#experience{background:#FFF5E6}
-#projects{background:#EEF5FF}
-#skills{background:#F0FAF5}
-#education{background:#FDF0F3}
-
-/* ── TIMELINE ── */
-.timeline{display:flex;flex-direction:column;gap:0}
-.tl-row{display:grid;grid-template-columns:160px 1fr;gap:2.5rem;padding:2rem 0;border-top:1px solid #E8D0D5;position:relative}
-.tl-row:first-child{border-top:none}
-.tl-date{font-family:"DM Mono",monospace;font-size:.72rem;color:#888;letter-spacing:.08em;padding-top:.2rem}
-.tl-body h3{font-family:"DM Sans",sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.2rem}
-.tl-body .role{font-family:"DM Mono",monospace;font-size:.7rem;color:#9B7FE8;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.75rem}
-.tl-body ul{padding-left:1rem}
-.tl-body li{font-size:.9rem;color:#444;margin:.3rem 0;line-height:1.6}
-.tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}
-.tl-tag{font-family:"DM Mono",monospace;font-size:.63rem;letter-spacing:.07em;padding:.18rem .6rem;border:1px solid #C0B8B0;color:#666}
-.tl-next{background:#FDE8EF;border:1.5px dashed #D8A0B0}
-.tl-next .tl-body h3{color:#9B7FE8}
-.tl-next .tl-body p{font-size:.9rem;color:#555;line-height:1.6}
+/* ── EXPERIENCE ── */
+.exp-section{background:#FFF9EC}
+.exp-item{display:grid;grid-template-columns:200px 1fr;gap:3rem;padding:2.5rem 0;border-top:1px solid #EAD8A0}
+.exp-item:first-of-type{border-top:none}
+.exp-left{}
+.exp-company{font-family:"Syne",sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:.25rem}
+.exp-date{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.08em;color:#888;margin-bottom:.5rem}
+.exp-place{font-size:.82rem;color:#777}
+.exp-right h3{font-size:.9rem;font-weight:700;font-family:"DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:#B388E8;margin-bottom:.75rem}
+.exp-right ul{padding-left:1rem}
+.exp-right li{font-size:.9rem;color:#444;margin:.35rem 0;line-height:1.6}
+.exp-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem}
+.echip{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.06em;padding:.18rem .6rem;background:#FFF3D0;border:1px solid #E0C860;color:#7A6020}
+.exp-next{background:#FEF0F5;border:1.5px dashed #E8B4D0;padding:2rem;margin-top:1.5rem}
+.exp-next h3{font-family:"Syne",sans-serif;font-weight:700;font-size:1.05rem;color:#B388E8;margin-bottom:.35rem}
+.exp-next .sub{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:#C888A8;margin-bottom:.6rem}
+.exp-next p{font-size:.88rem;color:#666;line-height:1.65}
 
 /* ── PROJECTS ── */
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:0;border:1px solid #C8D8F0}
-.proj-card{padding:2rem;border-right:1px solid #C8D8F0;border-bottom:1px solid #C8D8F0;display:flex;flex-direction:column;gap:.75rem;transition:background .2s}
-.proj-card:hover{background:#DDE8F8}
-.proj-num{font-family:"DM Mono",monospace;font-size:.63rem;color:#9B7FE8;letter-spacing:.1em}
-.proj-card h3{font-size:1.1rem;font-weight:700;line-height:1.3}
+.proj-section{background:#F0F4FF}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1.25rem}
+.proj-card{background:#fff;border:1.5px solid #C8D4F0;padding:1.75rem;display:flex;flex-direction:column;gap:.75rem;transition:transform .15s,box-shadow .15s}
+.proj-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px #B388E820}
+.proj-idx{font-family:"DM Mono",monospace;font-size:.62rem;color:#B388E8;letter-spacing:.1em;margin-bottom:.1rem}
+.proj-card h3{font-family:"Syne",sans-serif;font-weight:700;font-size:1.1rem;line-height:1.3}
 .proj-card p{font-size:.88rem;color:#555;line-height:1.65;flex:1}
+.medallion{display:flex;gap:.3rem;margin:.2rem 0}
+.medallion span{flex:1;text-align:center;font-family:"DM Mono",monospace;font-size:.62rem;padding:.22rem;letter-spacing:.06em;border:1px solid transparent}
+.bronze{background:#EEC99A;border-color:#C8A060!important}
+.silver{background:#D8DEE4;border-color:#B0B8C0!important}
+.gold{background:#F0D858;border-color:#C0A820!important}
 .proj-chips{display:flex;flex-wrap:wrap;gap:.3rem}
-.chip{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.07em;padding:.15rem .55rem;border:1px solid #C0B8B0;color:#666}
-.medallion{display:flex;gap:.3rem;margin:.25rem 0}
-.medallion span{flex:1;text-align:center;font-family:"DM Mono",monospace;font-size:.62rem;padding:.25rem;letter-spacing:.06em}
-.bronze{background:#E8C49A;border:1px solid #C0A070}.silver{background:#D8DDE2;border:1px solid #B0B8C0}.gold{background:#F0D060;border:1px solid #C0A820}
-.proj-foot{margin-top:.25rem}
-.proj-foot a{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#9B7FE8;border-bottom:1px solid #9B7FE8;transition:opacity .15s}
-.proj-foot a:hover{opacity:.7}
+.pchip{font-family:"DM Mono",monospace;font-size:.62rem;padding:.15rem .55rem;border:1px solid #C8D4F0;color:#5868A8;letter-spacing:.06em}
+.proj-link{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#B388E8;border-bottom:1px solid #B388E8;width:fit-content;margin-top:.25rem;transition:opacity .15s}
+.proj-link:hover{opacity:.6}
 
 /* ── SKILLS ── */
-.skills-table{width:100%;border-collapse:collapse}
-.skills-table tr{border-bottom:1px solid #C8E8DC}
-.skills-table tr:last-child{border-bottom:none}
-.skills-table td{padding:1.1rem 0;vertical-align:top}
-.skills-table td:first-child{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#9B7FE8;width:180px;padding-right:1.5rem;padding-top:1.2rem}
-.skills-table td:last-child{font-size:.9rem;color:#444;line-height:1.7}
-.sk{display:inline-block;background:#1A1A1A;color:#F5F0EB;font-family:"DM Mono",monospace;font-size:.65rem;padding:.2rem .55rem;margin:.15rem .2rem .15rem 0;letter-spacing:.06em}
+.skills-section{background:#F2FCF7}
+.skill-rows{display:flex;flex-direction:column;gap:0}
+.skill-row{display:grid;grid-template-columns:160px 1fr;gap:2rem;padding:1.25rem 0;border-bottom:1px solid #C0E8D0;align-items:start}
+.skill-row:last-child{border-bottom:none}
+.skill-cat{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#50A870;padding-top:.2rem}
+.skill-items{display:flex;flex-wrap:wrap;gap:.35rem}
+.sk{display:inline-block;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.06em;padding:.2rem .6rem;background:#1C1C1C;color:#fff}
 
 /* ── EDUCATION ── */
-.edu-block{border:1px solid #E8D0D5;padding:2rem;margin-bottom:1.5rem;background:#FDE8EF}
-.edu-block h3{font-size:1.15rem;font-weight:700;margin-bottom:.2rem}
-.edu-block .meta{font-family:"DM Mono",monospace;font-size:.68rem;color:#888;letter-spacing:.07em;margin-bottom:.75rem}
-.edu-block p{font-size:.88rem;color:#555;line-height:1.65}
-.cert-rows{display:flex;flex-direction:column;gap:0;border:1px solid #E8D0D5}
-.cert-row{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;padding:.9rem 1.25rem;border-bottom:1px solid #E8D0D5;transition:background .15s}
-.cert-row:last-child{border-bottom:none}
-.cert-row:hover{background:#FDE8EF}
-.cert-row strong{font-size:.88rem;font-weight:600}
-.cert-row span{font-family:"DM Mono",monospace;font-size:.65rem;color:#888;letter-spacing:.06em;white-space:nowrap}
+.edu-section{background:#FEF6F8}
+.edu-card{background:#fff;border:1.5px solid #E8D5DC;padding:1.75rem;margin-bottom:1.25rem}
+.edu-card h3{font-family:"Syne",sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:.2rem}
+.edu-card .emeta{font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.07em;color:#B388E8;text-transform:uppercase;margin-bottom:.65rem}
+.edu-card p{font-size:.88rem;color:#555;line-height:1.65}
+.cert-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.75rem}
+.cert{background:#fff;border:1.5px solid #E8D5DC;padding:1rem 1.25rem;transition:background .15s}
+.cert:hover{background:#FDE8F2}
+.cert strong{display:block;font-size:.88rem;font-weight:600;margin-bottom:.2rem}
+.cert span{font-family:"DM Mono",monospace;font-size:.62rem;color:#999;letter-spacing:.06em}
 
 /* ── CONTACT ── */
-.contact-section{padding:5rem 3.5rem;background:#1A1A1A;color:#F5F0EB}
-.contact-section h2{font-family:"Bebas Neue",sans-serif;font-size:clamp(3rem,7vw,7rem);letter-spacing:.03em;line-height:.95;margin-bottom:1.5rem}
-.contact-section h2 span{color:#9B7FE8}
-.contact-section p{font-size:.95rem;color:#aaa;margin-bottom:2rem;max-width:40ch}
+.contact-section{background:#1C1C1C;color:#fff;padding:6rem 3rem}
+.contact-section .section-label{color:#E8B4D0}
+.contact-section h2{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(2.5rem,7vw,6rem);letter-spacing:-.03em;line-height:1;margin-bottom:1rem}
+.contact-section h2 em{font-style:normal;color:#B388E8}
+.contact-section p{font-size:.95rem;color:#888;margin-bottom:2.5rem;max-width:38ch;line-height:1.7}
 .contact-btns{display:flex;flex-wrap:wrap;gap:.75rem}
-.contact-btns .btn{border-color:#555;color:#F5F0EB}
-.contact-btns .btn:hover{background:#9B7FE8;border-color:#9B7FE8;color:#fff}
-.contact-btns .btn.filled{background:#9B7FE8;border-color:#9B7FE8}
-.contact-btns .btn.filled:hover{background:#7B5FD8;border-color:#7B5FD8}
+.contact-btns .btn{border-color:#444;color:#fff}
+.contact-btns .btn:hover{background:#B388E8;border-color:#B388E8}
+.contact-btns .btn.filled{background:#B388E8;border-color:#B388E8}
+.contact-btns .btn.filled:hover{background:#9B5FD8;border-color:#9B5FD8}
 
-footer{background:#111;color:#444;text-align:center;padding:1rem;font-family:"DM Mono",monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase}
+footer{background:#111;color:#444;text-align:center;padding:1rem;font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
 
-/* ── MOBILE ── */
+/* ── RESPONSIVE ── */
 @media(max-width:768px){
-  .layout{grid-template-columns:1fr}
-  .sidebar{position:relative;width:100%;height:auto;border-right:none;border-bottom:1px solid #D0C8C0;flex-direction:row;flex-wrap:wrap;gap:1rem;padding:1rem 1.25rem}
-  .sidebar-name{margin-bottom:0;font-size:1.2rem}
-  .sidebar nav{flex-direction:row;flex-wrap:wrap;gap:.5rem}
-  .sidebar-spacer,.sidebar-status,.sidebar-links{display:none}
-  .main{margin-left:0}
-  .hero{grid-template-columns:1fr}
-  .hero-panel{display:none}
-  .hero-content{padding:2rem 1.5rem}
-  .section{padding:3rem 1.5rem}
-  .tl-row{grid-template-columns:1fr;gap:.5rem}
-  .tl-date{font-size:.7rem}
-  .contact-section{padding:3rem 1.5rem}
-  .skills-table td:first-child{width:120px}
+  .topnav{padding:.8rem 1.25rem}
+  .topnav nav{display:none}
+  .hero{padding:3rem 1.25rem 2rem;min-height:auto}
+  .hero-bg-text{display:none}
+  .hero-meta{gap:1.5rem}
+  .section{padding:3.5rem 1.25rem}
+  .exp-item{grid-template-columns:1fr;gap:1rem}
+  .skill-row{grid-template-columns:1fr;gap:.5rem}
+  .contact-section{padding:4rem 1.25rem}
 }
 </style>
 </head>
 <body>
-<div class="layout">
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="sidebar-logo">// AA-2027 PORTFOLIO</div>
-  <div class="sidebar-name">AKSHATA<br>ATHREYA.</div>
-  <nav aria-label="Sections">
-    <a href="#intro" class="active">Intro</a>
+<!-- TOP NAV -->
+<header class="topnav">
+  <div class="topnav-name">Akshata <span>Athreya</span></div>
+  <nav aria-label="Main">
     <a href="#experience">Experience</a>
-    <a href="#projects">Selected Work</a>
-    <a href="#skills">Toolkit</a>
-    <a href="#education">Verified Record</a>
+    <a href="#projects">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div class="sidebar-spacer"></div>
-  <div class="sidebar-status"><span class="status-dot"></span>Open to work</div>
-  <div class="sidebar-links">
-    <a href="https://github.com/AkshataAthreya" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/akshata-athreya" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:akshataathreya@gmail.com">Email</a>
-  </div>
-</aside>
+  <div class="topnav-status"><span class="dot"></span>Open to internships</div>
+</header>
 
-<!-- MAIN -->
-<main class="main">
-
-  <!-- HERO -->
-  <section class="hero" id="intro">
-    <div class="hero-content">
-      <div class="hero-spec">// DATA SCIENCE ENGINEER — BENGALURU, INDIA</div>
-      <h1>BUILDS<br>PIPELINES.<br><span class="accent">SHIPS<br>INSIGHT.</span></h1>
-      <p class="hero-sub">CS + Data Science student. Two production internships. Business minor. Looking for Jan 2027.</p>
-      <div class="btns">
-        <a class="btn filled" href="mailto:akshataathreya@gmail.com">akshataathreya@gmail.com</a>
-        <a class="btn" href="#projects">View the work</a>
-      </div>
+<!-- HERO -->
+<section class="hero" id="intro">
+  <div aria-hidden="true" class="hero-bg-text">DATA</div>
+  <div class="hero-inner">
+    <div class="hero-kicker">Data Science &amp; Engineering — Bengaluru, India</div>
+    <h1>
+      Pipelines.
+      <span class="line2">Dashboards.</span>
+      <span class="line3">Decisions.</span>
+    </h1>
+    <p class="hero-desc">CS student at RV University specialising in Data Science, with a minor in Business Administration. Two production internships. I build the systems that turn raw data into business insight.</p>
+    <div class="btns">
+      <a class="btn filled" href="mailto:akshataathreya@gmail.com">akshataathreya@gmail.com</a>
+      <a class="btn" href="#projects">View the work</a>
+      <a class="btn" href="https://github.com/AkshataAthreya" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/akshata-athreya" target="_blank" rel="noopener">LinkedIn</a>
     </div>
-    <div class="hero-panel">
-      <div class="panel-block">
-        <div class="panel-label">System.ID</div>
-        <div class="panel-value" style="font-family:'DM Mono',monospace;font-size:.82rem">AA-2027</div>
-      </div>
-      <div class="panel-block">
-        <div class="panel-label">Roles</div>
-        <ul class="panel-list">
-          <li>Data Engineering</li>
-          <li>Business Analytics</li>
-          <li>DevOps & Testing</li>
-        </ul>
-      </div>
-      <div class="panel-block">
-        <div class="panel-label">Focus</div>
-        <div class="panel-value">Data Science<br>&amp; Engineering</div>
-      </div>
-      <div class="panel-block">
-        <div class="panel-label">Education</div>
-        <div class="panel-value">RV University, '27<br><span style="font-size:.78rem;color:#888">B.Tech CSE — Data Science</span></div>
-      </div>
-      <div class="panel-block">
-        <div class="panel-label">Minor</div>
-        <div class="panel-value" style="font-size:.85rem">Business Administration</div>
-      </div>
-      <div class="panel-block">
-        <div class="panel-label">Status</div>
-        <span class="panel-tag">Open — Jan 2027</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- TICKER -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-inner">
-      <b>--</b><span>Python</span><b>--</b><span>SQL</span><b>--</b><span>Azure Data Factory</span><b>--</b><span>PySpark</span><b>--</b><span>Databricks</span><b>--</b><span>Power BI</span><b>--</b><span>Docker</span><b>--</b><span>Kubernetes</span><b>--</b><span>CI/CD</span><b>--</b><span>XGBoost</span><b>--</b><span>SHAP</span><b>--</b><span>React</span><b>--</b><span>Flask</span><b>--</b><span>Tableau</span><b>--</b><span>MongoDB</span><b>--</b><span>GitLab</span>
-      <b>--</b><span>Python</span><b>--</b><span>SQL</span><b>--</b><span>Azure Data Factory</span><b>--</b><span>PySpark</span><b>--</b><span>Databricks</span><b>--</b><span>Power BI</span><b>--</b><span>Docker</span><b>--</b><span>Kubernetes</span><b>--</b><span>CI/CD</span><b>--</b><span>XGBoost</span><b>--</b><span>SHAP</span><b>--</b><span>React</span><b>--</b><span>Flask</span><b>--</b><span>Tableau</span><b>--</b><span>MongoDB</span><b>--</b><span>GitLab</span><b>--</b>
+    <div class="hero-tags">
+      <span class="htag">Data Engineering</span>
+      <span class="htag">Business Analytics</span>
+      <span class="htag">Power BI</span>
+      <span class="htag">DevOps &amp; Testing</span>
+      <span class="htag">Machine Learning</span>
+      <span class="htag">Azure</span>
     </div>
   </div>
-
-  <!-- EXPERIENCE -->
-  <section class="section" id="experience">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>Experience</h2>
-    </div>
-    <div class="timeline">
-      <div class="tl-row">
-        <div class="tl-date">Jun – Jul 2026</div>
-        <div class="tl-body">
-          <h3>Siemens Energy</h3>
-          <div class="role">Software Engineer Intern · Bengaluru</div>
-          <ul>
-            <li>Built a centralised logging framework and custom JFrog CLI exception handling for 5+ error types, producing clean user-friendly logs</li>
-            <li>Extended core Artifactory functionality with 2 new operations and resolved a CI/CD pipeline caching failure so all test cases passed</li>
-            <li>Authored a full unit test suite for the Executor package — 100% passing — and set up its CI/CD pipeline end to end</li>
-            <li>Built PowerShell automation scripts eliminating the need for a standalone Python setup across dev environments</li>
-            <li>Wrote technical documentation for 2 internal packages and automated MATLAB-based Excel data extraction workflows</li>
-          </ul>
-          <div class="tl-tags">
-            <span class="tl-tag">JFrog CLI</span><span class="tl-tag">Python</span><span class="tl-tag">CI/CD</span><span class="tl-tag">PowerShell</span><span class="tl-tag">Unit Testing</span><span class="tl-tag">GitLab</span><span class="tl-tag">Artifactory</span>
-          </div>
-        </div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-date">Jun – Jul 2025</div>
-        <div class="tl-body">
-          <h3>Siemens Gamesa</h3>
-          <div class="role">Software Engineer Intern · Bengaluru</div>
-          <ul>
-            <li>Designed and enforced 3 Git hook types (pre-commit, pre-push, tag-based) validating branch naming, commit messages, and versioning</li>
-            <li>Integrated automated repository checks to prevent policy violations and reduce manual review effort</li>
-            <li>Refactored cross-platform Python unit tests to improve maintainability and coverage</li>
-            <li>Automated MATLAB-to-Python transformations and built Pandas-based Excel reporting pipelines for turbine incident analysis</li>
-          </ul>
-          <div class="tl-tags">
-            <span class="tl-tag">Git Hooks</span><span class="tl-tag">Python</span><span class="tl-tag">Pandas</span><span class="tl-tag">Automated Testing</span><span class="tl-tag">Data Automation</span><span class="tl-tag">GitHub</span>
-          </div>
-        </div>
-      </div>
-      <div class="tl-row tl-next">
-        <div class="tl-date" style="color:#9B7FE8">Next · Jan 2027</div>
-        <div class="tl-body">
-          <h3>Open to opportunities</h3>
-          <div class="role">Data Analytics · BI · Data Engineering · Product Analytics</div>
-          <p>Looking for a different environment and industry — fintech, healthcare, enterprise tech, or consulting. Two Siemens internships gave me depth; the next one is about breadth.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="section" id="projects">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>Selected Work</h2>
-    </div>
-    <div class="proj-grid">
-      <div class="proj-card">
-        <div class="proj-num">Project 001</div>
-        <h3>AdventureWorks Data Engineering Pipeline</h3>
-        <div class="medallion"><span class="bronze">Bronze</span><span class="silver">Silver</span><span class="gold">Gold</span></div>
-        <p>End-to-end Medallion architecture over 100K+ records across 10+ tables. Parameterised Azure Data Factory pipelines ingest into ADLS Gen2, PySpark on Databricks transforms, Synapse serves analytics views, and Power BI surfaces business insights.</p>
-        <div class="proj-chips">
-          <span class="chip">Azure Data Factory</span><span class="chip">Databricks</span><span class="chip">PySpark</span><span class="chip">Synapse</span><span class="chip">Power BI</span><span class="chip">SQL</span>
-        </div>
-        <div class="proj-foot"><a href="https://github.com/AkshataAthreya/Adventureworks_DataEngineeringProject" target="_blank" rel="noopener">View on GitHub</a></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-num">Project 002</div>
-        <h3>Drug-Drug Interaction Predictor</h3>
-        <p>Multi-modal Explainable AI system predicting DDI with 5-level severity classification — combining chemical, biological, and clinical data into a 4,139-dimensional feature space. SHAP explanations and CYP450 mechanism narratives make every prediction transparent. Supports polypharmacy analysis of up to 10 concurrent drugs.</p>
-        <div class="proj-chips">
-          <span class="chip">XGBoost</span><span class="chip">SHAP</span><span class="chip">RDKit</span><span class="chip">REST API</span><span class="chip">Streamlit</span>
-        </div>
-        <div class="proj-foot"><a href="https://github.com/AkshataAthreya/Drug-Drug-Interactions" target="_blank" rel="noopener">View on GitHub</a></div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-num">Project 003</div>
-        <h3>Grading &amp; Administration System</h3>
-        <p>Flask-based full-stack ERP for grading, attendance, and administration. SQL backend seeded from student CSV data, automated grading workflows, secure authentication. Deployed live on Vercel.</p>
-        <div class="proj-chips">
-          <span class="chip">React.js</span><span class="chip">Flask</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Vercel</span>
-        </div>
-        <div class="proj-foot"><a href="https://github.com/AkshataAthreya/New-Interface-for-Grading-Attendance-and-Administration" target="_blank" rel="noopener">View on GitHub</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section" id="skills">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>Toolkit</h2>
-    </div>
-    <table class="skills-table">
-      <tr>
-        <td>Programming</td>
-        <td><span class="sk">Python</span><span class="sk">Pandas</span><span class="sk">NumPy</span><span class="sk">SQL</span><span class="sk">JavaScript</span><span class="sk">Matplotlib</span></td>
-      </tr>
-      <tr>
-        <td>Data Engineering</td>
-        <td><span class="sk">Azure Data Factory</span><span class="sk">PySpark</span><span class="sk">Databricks</span><span class="sk">Synapse</span><span class="sk">ADLS Gen2</span><span class="sk">MongoDB</span></td>
-      </tr>
-      <tr>
-        <td>Data &amp; BI</td>
-        <td><span class="sk">Power BI</span><span class="sk">Tableau</span><span class="sk">Excel</span><span class="sk">SQL Analytics</span></td>
-      </tr>
-      <tr>
-        <td>DevOps</td>
-        <td><span class="sk">Docker</span><span class="sk">Kubernetes</span><span class="sk">Git</span><span class="sk">GitHub</span><span class="sk">GitLab</span><span class="sk">CI/CD</span><span class="sk">PowerShell</span></td>
-      </tr>
-      <tr>
-        <td>ML &amp; AI</td>
-        <td><span class="sk">XGBoost</span><span class="sk">SHAP</span><span class="sk">Scikit-learn</span><span class="sk">Streamlit</span><span class="sk">RDKit</span></td>
-      </tr>
-      <tr>
-        <td>Web</td>
-        <td><span class="sk">React.js</span><span class="sk">Flask</span><span class="sk">REST APIs</span><span class="sk">HTML</span><span class="sk">CSS</span></td>
-      </tr>
-      <tr>
-        <td>Business</td>
-        <td><span class="sk">Consumer Analysis</span><span class="sk">Marketing Analytics</span><span class="sk">Accounting</span><span class="sk">Data-Driven Decisions</span></td>
-      </tr>
-    </table>
-  </section>
-
-  <!-- EDUCATION -->
-  <section class="section" id="education">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>Verified Record</h2>
-    </div>
-    <div class="edu-block">
-      <h3>RV University, Bengaluru</h3>
-      <div class="meta">B.TECH — CSE DATA SCIENCE &amp; ENGINEERING &nbsp;·&nbsp; SEP 2023 – 2027</div>
-      <p>Coursework: Data Structures &amp; Algorithms, Operating Systems, DBMS, Agile &amp; DevOps, Machine Learning, Data Engineering, Data Science, Cloud Computing, Power BI<br><br>
-      <strong>Minor in Business Administration</strong> — Consumer Analysis, Marketing, Accounting, HR, Data Driven Decisions for Business</p>
-    </div>
-    <div class="cert-rows">
-      <div class="cert-row"><strong>AWS Academy Graduate — Data Engineering</strong><span>AWS · Oct 2025</span></div>
-      <div class="cert-row"><strong>Introduction to Containers, Kubernetes &amp; OpenShift V2</strong><span>IBM SkillsBuild · Mar 2025</span></div>
-      <div class="cert-row"><strong>Cloud Computing Fundamentals</strong><span>IBM SkillsBuild · Feb 2026</span></div>
-      <div class="cert-row"><strong>Agile Scrum Foundation</strong><span>Simplilearn · Feb 2025</span></div>
-      <div class="cert-row"><strong>Python for Data Science</strong><span>Infosys Springboard · Aug 2025</span></div>
-      <div class="cert-row"><strong>MongoDB Schema Design &amp; Optimization</strong><span>MongoDB · Sep 2026</span></div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <div class="contact-section" id="contact">
-    <div style="max-width:1080px;margin:0 auto;padding:0 0">
-      <h2>LET'S<br><span>TALK.</span></h2>
-      <p>Open to data analytics, BI, data engineering, and product analyst internships from January 2027.</p>
-      <div class="contact-btns">
-        <a class="btn filled" href="mailto:akshataathreya@gmail.com">akshataathreya@gmail.com</a>
-        <a class="btn" href="https://github.com/AkshataAthreya" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/akshata-athreya" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
+  <div class="hero-meta">
+    <div class="meta-item"><div class="meta-label">Currently at</div><div class="meta-val">RV University, '27</div></div>
+    <div class="meta-item"><div class="meta-label">Internships</div><div class="meta-val">Siemens Energy &amp; Gamesa</div></div>
+    <div class="meta-item"><div class="meta-label">Minor</div><div class="meta-val">Business Administration</div></div>
+    <div class="meta-item"><div class="meta-label">Looking for</div><div class="meta-val">Internship — Jan 2027</div></div>
   </div>
+</section>
 
-  <footer>&copy; 2026 Akshata Athreya &nbsp;·&nbsp; Bengaluru, India</footer>
-
-</main>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <b>·</b><span>Python</span><b>·</b><span>SQL</span><b>·</b><span>Azure Data Factory</span><b>·</b><span>PySpark</span><b>·</b><span>Databricks</span><b>·</b><span>Power BI</span><b>·</b><span>Docker</span><b>·</b><span>Kubernetes</span><b>·</b><span>CI/CD</span><b>·</b><span>XGBoost</span><b>·</b><span>SHAP</span><b>·</b><span>React</span><b>·</b><span>Flask</span><b>·</b><span>Tableau</span><b>·</b><span>MongoDB</span><b>·</b><span>GitLab</span><b>·</b><span>PowerShell</span>
+    <b>·</b><span>Python</span><b>·</b><span>SQL</span><b>·</b><span>Azure Data Factory</span><b>·</b><span>PySpark</span><b>·</b><span>Databricks</span><b>·</b><span>Power BI</span><b>·</b><span>Docker</span><b>·</b><span>Kubernetes</span><b>·</b><span>CI/CD</span><b>·</b><span>XGBoost</span><b>·</b><span>SHAP</span><b>·</b><span>React</span><b>·</b><span>Flask</span><b>·</b><span>Tableau</span><b>·</b><span>MongoDB</span><b>·</b><span>GitLab</span><b>·</b><span>PowerShell</span><b>·</b>
+  </div>
 </div>
+
+<!-- EXPERIENCE -->
+<section class="section exp-section" id="experience">
+  <div class="section-label">Experience</div>
+  <h2>Where I've worked</h2>
+
+  <div class="exp-item">
+    <div class="exp-left">
+      <div class="exp-company">Siemens Energy</div>
+      <div class="exp-date">Jun – Jul 2026</div>
+      <div class="exp-place">Bengaluru, India</div>
+    </div>
+    <div class="exp-right">
+      <h3>Software Engineer Intern</h3>
+      <ul>
+        <li>Built a centralised logging framework and custom JFrog CLI exception handling for 5+ error types, producing clean user-friendly logs</li>
+        <li>Extended core Artifactory functionality with 2 new operations and resolved a CI/CD pipeline caching failure so all test cases passed</li>
+        <li>Authored a full unit test suite for the Executor package — 100% passing — and set up its CI/CD pipeline end to end</li>
+        <li>Built PowerShell automation scripts eliminating the need for a standalone Python setup across dev environments</li>
+        <li>Wrote technical documentation for 2 internal packages and automated MATLAB-based Excel data extraction workflows</li>
+      </ul>
+      <div class="exp-chips">
+        <span class="echip">JFrog CLI</span><span class="echip">Python</span><span class="echip">CI/CD</span><span class="echip">PowerShell</span><span class="echip">Unit Testing</span><span class="echip">GitLab</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-left">
+      <div class="exp-company">Siemens Gamesa</div>
+      <div class="exp-date">Jun – Jul 2025</div>
+      <div class="exp-place">Bengaluru, India</div>
+    </div>
+    <div class="exp-right">
+      <h3>Software Engineer Intern</h3>
+      <ul>
+        <li>Designed and enforced 3 Git hook types (pre-commit, pre-push, tag-based) validating branch naming, commit messages, and versioning</li>
+        <li>Integrated automated repository checks to prevent policy violations and reduce manual review effort</li>
+        <li>Refactored cross-platform Python unit tests to improve maintainability and coverage</li>
+        <li>Automated MATLAB-to-Python transformations and built Pandas-based Excel reporting pipelines for turbine incident analysis</li>
+      </ul>
+      <div class="exp-chips">
+        <span class="echip">Git Hooks</span><span class="echip">Python</span><span class="echip">Pandas</span><span class="echip">Automated Testing</span><span class="echip">Data Automation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-next">
+    <h3>Next — Jan 2027</h3>
+    <div class="sub">Open to internships</div>
+    <p>Actively looking for a data analytics, BI, data engineering, or product analytics internship starting January 2027. Looking for a new industry and environment — fintech, healthcare, enterprise tech, or consulting. Two Siemens internships gave depth; the next one is about breadth.</p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section proj-section" id="projects">
+  <div class="section-label">Selected Work</div>
+  <h2>Things I've built</h2>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-idx">001</div>
+      <h3>AdventureWorks Data Engineering Pipeline</h3>
+      <div class="medallion"><span class="bronze">Bronze</span><span class="silver">Silver</span><span class="gold">Gold</span></div>
+      <p>End-to-end Medallion architecture over 100K+ records across 10+ tables. Parameterised ADF pipelines ingest into ADLS Gen2, PySpark on Databricks transforms, Synapse serves analytics views, Power BI surfaces business insights.</p>
+      <div class="proj-chips">
+        <span class="pchip">Azure Data Factory</span><span class="pchip">Databricks</span><span class="pchip">PySpark</span><span class="pchip">Synapse</span><span class="pchip">Power BI</span>
+      </div>
+      <a class="proj-link" href="https://github.com/AkshataAthreya/Adventureworks_DataEngineeringProject" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-idx">002</div>
+      <h3>Drug-Drug Interaction Predictor</h3>
+      <p>Multi-modal Explainable AI predicting DDI with 5-level severity — combining chemical, biological, and clinical data into 4,139 features. SHAP explanations and CYP450 narratives make every prediction transparent. Supports up to 10 concurrent drugs.</p>
+      <div class="proj-chips">
+        <span class="pchip">XGBoost</span><span class="pchip">SHAP</span><span class="pchip">RDKit</span><span class="pchip">REST API</span><span class="pchip">Streamlit</span>
+      </div>
+      <a class="proj-link" href="https://github.com/AkshataAthreya/Drug-Drug-Interactions" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-idx">003</div>
+      <h3>Grading &amp; Administration System</h3>
+      <p>Flask-based full-stack ERP for grading, attendance, and administration. SQL backend seeded from student CSV data, automated grading workflows, secure authentication. Deployed live on Vercel.</p>
+      <div class="proj-chips">
+        <span class="pchip">React.js</span><span class="pchip">Flask</span><span class="pchip">Python</span><span class="pchip">SQL</span><span class="pchip">Vercel</span>
+      </div>
+      <a class="proj-link" href="https://github.com/AkshataAthreya/New-Interface-for-Grading-Attendance-and-Administration" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section skills-section" id="skills">
+  <div class="section-label">Toolkit</div>
+  <h2>What I work with</h2>
+  <div class="skill-rows">
+    <div class="skill-row"><div class="skill-cat">Programming</div><div class="skill-items"><span class="sk">Python</span><span class="sk">Pandas</span><span class="sk">NumPy</span><span class="sk">SQL</span><span class="sk">JavaScript</span></div></div>
+    <div class="skill-row"><div class="skill-cat">Data Engineering</div><div class="skill-items"><span class="sk">Azure Data Factory</span><span class="sk">PySpark</span><span class="sk">Databricks</span><span class="sk">Synapse</span><span class="sk">ADLS Gen2</span><span class="sk">MongoDB</span></div></div>
+    <div class="skill-row"><div class="skill-cat">Data &amp; BI</div><div class="skill-items"><span class="sk">Power BI</span><span class="sk">Tableau</span><span class="sk">Excel</span><span class="sk">SQL Analytics</span></div></div>
+    <div class="skill-row"><div class="skill-cat">DevOps</div><div class="skill-items"><span class="sk">Docker</span><span class="sk">Kubernetes</span><span class="sk">Git</span><span class="sk">GitLab</span><span class="sk">CI/CD</span><span class="sk">PowerShell</span></div></div>
+    <div class="skill-row"><div class="skill-cat">ML &amp; AI</div><div class="skill-items"><span class="sk">XGBoost</span><span class="sk">SHAP</span><span class="sk">Scikit-learn</span><span class="sk">Streamlit</span></div></div>
+    <div class="skill-row"><div class="skill-cat">Web</div><div class="skill-items"><span class="sk">React.js</span><span class="sk">Flask</span><span class="sk">REST APIs</span><span class="sk">HTML/CSS</span></div></div>
+    <div class="skill-row"><div class="skill-cat">Business</div><div class="skill-items"><span class="sk">Consumer Analysis</span><span class="sk">Marketing Analytics</span><span class="sk">Accounting</span><span class="sk">Data-Driven Decisions</span></div></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section edu-section" id="education">
+  <div class="section-label">Education &amp; Certifications</div>
+  <h2>Verified record</h2>
+  <div class="edu-card">
+    <h3>RV University, Bengaluru</h3>
+    <div class="emeta">B.Tech — CSE Data Science &amp; Engineering &nbsp;·&nbsp; Sep 2023 – 2027</div>
+    <p>Coursework: Data Structures &amp; Algorithms, Operating Systems, DBMS, Agile &amp; DevOps, Machine Learning, Data Engineering, Data Science, Cloud Computing, Power BI<br><br>
+    <strong>Minor in Business Administration</strong> — Consumer Analysis, Marketing, Accounting, HR, Data Driven Decisions for Business</p>
+  </div>
+  <div class="cert-list">
+    <div class="cert"><strong>AWS Academy — Data Engineering</strong><span>Amazon Web Services · Oct 2025</span></div>
+    <div class="cert"><strong>Containers, Kubernetes &amp; OpenShift V2</strong><span>IBM SkillsBuild · Mar 2025</span></div>
+    <div class="cert"><strong>Cloud Computing Fundamentals</strong><span>IBM SkillsBuild · Feb 2026</span></div>
+    <div class="cert"><strong>Agile Scrum Foundation</strong><span>Simplilearn · Feb 2025</span></div>
+    <div class="cert"><strong>Python for Data Science</strong><span>Infosys Springboard · Aug 2025</span></div>
+    <div class="cert"><strong>MongoDB Schema Design &amp; Optimization</strong><span>MongoDB · Sep 2026</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-label">Contact</div>
+  <h2>Let's work<br><em>together.</em></h2>
+  <p>Open to data analytics, BI, data engineering, and product analyst internships from January 2027. Always happy to connect.</p>
+  <div class="contact-btns">
+    <a class="btn filled" href="mailto:akshataathreya@gmail.com">akshataathreya@gmail.com</a>
+    <a class="btn" href="https://github.com/AkshataAthreya" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://www.linkedin.com/in/akshata-athreya" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</section>
+
+<footer>&copy; 2026 Akshata Athreya &nbsp;·&nbsp; Bengaluru, India</footer>
+
 </body>
 </html>
